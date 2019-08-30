@@ -1,0 +1,20 @@
+{% extends 'registration/base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+    <div class="container">
+        {% if user.is_superuser %}
+            <h2>Create New User</h2>
+        {% else %}
+            <h2>Sign up</h2>
+        {% endif %}
+        <form method="POST">
+            {% bootstrap_form form %}
+            {% csrf_token %}
+            {% if user.is_superuser %}
+                <input class="btn btn-primary" type="submit" value="Create">
+            {% else %}
+                <input class="btn btn-primary" type="submit" value="Submit">
+            {% endif %}
+        </form>
+    </div>
+{% endblock %}
